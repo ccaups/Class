@@ -23,4 +23,8 @@
     <ProjectReference Include="..\DatabaseTask.Core\DatabaseTask.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
