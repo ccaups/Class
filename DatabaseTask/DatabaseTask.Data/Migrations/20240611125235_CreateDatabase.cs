@@ -10,7 +10,7 @@ namespace DatabaseTask.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "GroupLeaders",
+                name: "GroupLeader",
                 columns: table => new
                 {
                     GroupLeaderID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -19,11 +19,11 @@ namespace DatabaseTask.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupLeaders", x => x.GroupLeaderID);
+                    table.PrimaryKey("PK_GroupLeader", x => x.GroupLeaderID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Classes",
+                name: "Class",
                 columns: table => new
                 {
                     ClassCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -32,17 +32,17 @@ namespace DatabaseTask.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Classes", x => x.ClassCode);
+                    table.PrimaryKey("PK_Class", x => x.ClassCode);
                     table.ForeignKey(
-                        name: "FK_Classes_GroupLeaders_GroupLeaderID",
+                        name: "FK_Class_GroupLeader_GroupLeaderID",
                         column: x => x.GroupLeaderID,
-                        principalTable: "GroupLeaders",
+                        principalTable: "GroupLeader",
                         principalColumn: "GroupLeaderID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Students",
+                name: "Student",
                 columns: table => new
                 {
                     StudentID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -52,17 +52,17 @@ namespace DatabaseTask.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.StudentID);
+                    table.PrimaryKey("PK_Student", x => x.StudentID);
                     table.ForeignKey(
-                        name: "FK_Students_Classes_ClassCode",
+                        name: "FK_Student_Class_ClassCode",
                         column: x => x.ClassCode,
-                        principalTable: "Classes",
+                        principalTable: "Class",
                         principalColumn: "ClassCode",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodCoupons",
+                name: "FoodCoupon",
                 columns: table => new
                 {
                     VoucherCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -73,44 +73,44 @@ namespace DatabaseTask.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodCoupons", x => x.VoucherCode);
+                    table.PrimaryKey("PK_FoodCoupon", x => x.VoucherCode);
                     table.ForeignKey(
-                        name: "FK_FoodCoupons_Students_StudentID",
+                        name: "FK_FoodCoupon_Student_StudentID",
                         column: x => x.StudentID,
-                        principalTable: "Students",
+                        principalTable: "Student",
                         principalColumn: "StudentID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Classes_GroupLeaderID",
-                table: "Classes",
+                name: "IX_Class_GroupLeaderID",
+                table: "Class",
                 column: "GroupLeaderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodCoupons_StudentID",
-                table: "FoodCoupons",
+                name: "IX_FoodCoupon_StudentID",
+                table: "FoodCoupon",
                 column: "StudentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_ClassCode",
-                table: "Students",
+                name: "IX_Student_ClassCode",
+                table: "Student",
                 column: "ClassCode");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "FoodCoupons");
+                name: "FoodCoupon");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Student");
 
             migrationBuilder.DropTable(
-                name: "Classes");
+                name: "Class");
 
             migrationBuilder.DropTable(
-                name: "GroupLeaders");
+                name: "GroupLeader");
         }
     }
 }

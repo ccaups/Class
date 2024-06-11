@@ -6,10 +6,10 @@ namespace DatabaseTask.Data
     public class DatabaseTaskDbContext : DbContext
     {
         // Your DbSet properties here:
-        public DbSet<Class> Classes { get; set; }
-        public DbSet<FoodCoupon> FoodCoupons { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<GroupLeader> GroupLeaders { get; set; }
+        public DbSet<Class> Class { get; set; }
+        public DbSet<FoodCoupon> FoodCoupon { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<GroupLeader> GroupLeader { get; set; }
 
         // Constructor (for options)
         public DatabaseTaskDbContext(DbContextOptions<DatabaseTaskDbContext> options)

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseTask.Data.Migrations
 {
     [DbContext(typeof(DatabaseTaskDbContext))]
-    [Migration("20240611120842_CreateDatabase")]
+    [Migration("20240611125235_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace DatabaseTask.Data.Migrations
 
                     b.HasIndex("GroupLeaderID");
 
-                    b.ToTable("Classes");
+                    b.ToTable("Class");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.FoodCoupon", b =>
@@ -66,7 +66,7 @@ namespace DatabaseTask.Data.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("FoodCoupons");
+                    b.ToTable("FoodCoupon");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.GroupLeader", b =>
@@ -85,7 +85,7 @@ namespace DatabaseTask.Data.Migrations
 
                     b.HasKey("GroupLeaderID");
 
-                    b.ToTable("GroupLeaders");
+                    b.ToTable("GroupLeader");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Student", b =>
@@ -111,7 +111,7 @@ namespace DatabaseTask.Data.Migrations
 
                     b.HasIndex("ClassCode");
 
-                    b.ToTable("Students");
+                    b.ToTable("Student");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Class", b =>
