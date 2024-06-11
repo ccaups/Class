@@ -18,6 +18,6 @@ namespace DatabaseTask.Core.Domain
 
         public DateTime EndDate { get; set; }
 
-        public decimal Amount { get; set; }
+        public int Amount { get; set; }
     }
 }
