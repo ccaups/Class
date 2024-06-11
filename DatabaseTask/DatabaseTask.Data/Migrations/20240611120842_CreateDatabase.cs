@@ -23,7 +23,7 @@ namespace DatabaseTask.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Class",
+                name: "Classes",
                 columns: table => new
                 {
                     ClassCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -32,9 +32,9 @@ namespace DatabaseTask.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Class", x => x.ClassCode);
+                    table.PrimaryKey("PK_Classes", x => x.ClassCode);
                     table.ForeignKey(
-                        name: "FK_Class_GroupLeaders_GroupLeaderID",
+                        name: "FK_Classes_GroupLeaders_GroupLeaderID",
                         column: x => x.GroupLeaderID,
                         principalTable: "GroupLeaders",
                         principalColumn: "GroupLeaderID",
@@ -42,21 +42,21 @@ namespace DatabaseTask.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Student",
+                name: "Students",
                 columns: table => new
                 {
                     StudentID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ClassCode = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.StudentID);
+                    table.PrimaryKey("PK_Students", x => x.StudentID);
                     table.ForeignKey(
-                        name: "FK_Student_Class_ClassCode",
+                        name: "FK_Students_Classes_ClassCode",
                         column: x => x.ClassCode,
-                        principalTable: "Class",
+                        principalTable: "Classes",
                         principalColumn: "ClassCode",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -69,22 +69,22 @@ namespace DatabaseTask.Data.Migrations
                     StudentID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false)
+                    Amount = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FoodCoupons", x => x.VoucherCode);
                     table.ForeignKey(
-                        name: "FK_FoodCoupons_Student_StudentID",
+                        name: "FK_FoodCoupons_Students_StudentID",
                         column: x => x.StudentID,
-                        principalTable: "Student",
+                        principalTable: "Students",
                         principalColumn: "StudentID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Class_GroupLeaderID",
-                table: "Class",
+                name: "IX_Classes_GroupLeaderID",
+                table: "Classes",
                 column: "GroupLeaderID");
 
             migrationBuilder.CreateIndex(
@@ -93,8 +93,8 @@ namespace DatabaseTask.Data.Migrations
                 column: "StudentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Student_ClassCode",
-                table: "Student",
+                name: "IX_Students_ClassCode",
+                table: "Students",
                 column: "ClassCode");
         }
 
@@ -104,10 +104,10 @@ namespace DatabaseTask.Data.Migrations
                 name: "FoodCoupons");
 
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "Students");
 
             migrationBuilder.DropTable(
-                name: "Class");
+                name: "Classes");
 
             migrationBuilder.DropTable(
                 name: "GroupLeaders");

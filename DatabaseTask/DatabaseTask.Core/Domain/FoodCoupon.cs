@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System;
 
 namespace DatabaseTask.Core.Domain
 {
@@ -9,15 +9,19 @@ namespace DatabaseTask.Core.Domain
         [Key]
         public Guid VoucherCode { get; set; }
 
+        [ForeignKey("StudentID")]        
         public Guid StudentID { get; set; }
 
-        [ForeignKey("StudentID")]
         public virtual Student Student { get; set; }
 
+        [Required]
         public DateTime StartDate { get; set; }
 
+        [Required]
         public DateTime EndDate { get; set; }
 
-        public int Amount { get; set; }
+        [Required]
+        [Column(TypeName = "decimal(10, 2)")] // Adjust precision/scale as needed
+        public decimal Amount { get; set; }
     }
 }
